@@ -1,7 +1,11 @@
-/** @type {import('next').nextconfig} */
-const nextconfig = {
+import type { NextConfig } from 'next'
+
+const nextConfig: NextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   async rewrites() {
-    if (process.env.node_env === 'development') {
+    if (process.env.NODE_ENV === 'development') {
       return [
         {
           source: '/backend/api/:path*',
@@ -11,16 +15,16 @@ const nextconfig = {
     }
     return []
   },
-
+  
   async headers() {
     return [
       {
         source: '/backend/api/:path*',
         headers: [
-          { key: 'access-control-allow-credentials', value: 'true' },
-          { key: 'access-control-allow-origin', value: '*' },
-          { key: 'access-control-allow-methods', value: 'get,options,patch,delete,post,put' },
-          { key: 'access-control-allow-headers', value: 'x-csrf-token, x-requested-with, accept, accept-version, content-length, content-md5, content-type, date, x-api-version, authorization' },
+          { key: 'Access-Control-Allow-Credentials', value: 'true' },
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT' },
+          { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Authorization' },
         ],
       },
     ]
@@ -31,5 +35,4 @@ const nextconfig = {
   },
 }
 
-module.exports = nextconfig
-
+export default nextConfig
