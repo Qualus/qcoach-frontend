@@ -1,10 +1,10 @@
-import { LoginForm } from '@/components/forms/login-form'
+import { LoginContainer } from '@/components/auth'
 
 export default function LoginPage() {
   return (
     <main className="min-h-screen bg-primary-50">
       <div className="container mx-auto py-12">
-        <LoginForm />
+        <LoginContainer />
       </div>
     </main>
   )

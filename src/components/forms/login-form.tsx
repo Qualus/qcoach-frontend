@@ -7,12 +7,13 @@ import { Eye, EyeOff, Mail, Lock } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface LoginFormProps {
-  onSubmit?: (email: string, password: string) => void
+  onSubmit: (email: string, password: string) => void
   loading?: boolean
   error?: string
+  disabled?: boolean
 }
 
-export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) => {
+export const LoginForm = ({ onSubmit, loading = false, error, disabled = false }: LoginFormProps) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
@@ -37,10 +38,16 @@ export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) 
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Clear previous errors
+    setErrors({})
+
     if (validateForm()) {
-      onSubmit?.(email, password)
+      onSubmit(email, password)
     }
   }
+
+  const isDisabled = loading || disabled
 
   return (
     <div className="w-full max-w-md mx-auto">
@@ -68,9 +75,11 @@ export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) 
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isDisabled}
                 className={cn(
                   "w-full pl-10 pr-4 py-3 border rounded-lg transition-colors",
                   "focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500",
+                  "disabled:opacity-50 disabled:cursor-not-allowed",
                   errors.email ? "border-red-300 bg-red-50" : "border-primary-300 bg-white",
                 )}
                 placeholder="inserisci@email.com"
@@ -90,9 +99,11 @@ export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) 
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                disabled={isDisabled}
                 className={cn(
                   "w-full pl-10 pr-12 py-3 border rounded-lg transition-colors",
                   "focus:outline-none focus:ring-2 focus:ring-accent-500 focus:border-accent-500",
+                  "disabled:opacity-50 disabled:cursor-not-allowed",
                   errors.password ? "border-red-300 bg-red-50" : "border-primary-300 bg-white",
                 )}
                 placeholder="••••••••"
@@ -100,7 +111,8 @@ export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) 
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-primary-400 hover:text-primary-600"
+                disabled={isDisabled}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-primary-400 hover:text-primary-600 disabled:opacity-50"
               >
                 {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
               </button>
@@ -116,11 +128,11 @@ export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) 
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={isDisabled}
             className={cn(
               "w-full py-3 px-4 rounded-lg font-medium transition-colors",
               "focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2",
-              loading
+              isDisabled
                 ? "bg-primary-300 text-primary-500 cursor-not-allowed"
                 : "bg-accent-600 text-white hover:bg-accent-700",
             )}
