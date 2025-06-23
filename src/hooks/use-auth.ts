@@ -4,10 +4,10 @@ import { useAuthStore } from '@/store/auth-store'
 import { getAuthTokens, clearAuthTokens } from '@/lib/auth/tokens'
 
 export function useAuth() {
-  const { user, tokens, setAuth, clearAuth } = useAuthStore()
+  const { tokens, role, setAuth, clearAuth } = useAuthStore()
   const router = useRouter()
 
-  // Ripristina auth state da localStorage al mount
+  // Restore auth state from localStorage on mount
   useEffect(() => {
     const savedTokens = getAuthTokens()
     if (savedTokens?.jwtToken) {
@@ -22,11 +22,11 @@ export function useAuth() {
   }
 
   return {
-    user,
     tokens,
-    isAuthenticated: !!(tokens?.jwtToken || user),
-    isCoach: user?.role === 'COACH',
-    isCustomer: user?.role === 'CUSTOMER',
+    role,
+    isAuthenticated: !!tokens?.jwtToken,
+    isCoach: role === 'COACH',
+    isCustomer: role === 'CUSTOMER',
     logout,
   }
 }
