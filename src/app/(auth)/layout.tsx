@@ -13,7 +13,6 @@ export default function AuthLayout({
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <div className="flex min-h-screen">
-        {/* Left side - Branding/Image */}
         <div className="hidden lg:flex lg:w-1/2 bg-gray-900 relative overflow-hidden">
           <div className="flex flex-col justify-center px-12 py-12 relative z-10">
             <div className="mb-8">
@@ -24,7 +23,7 @@ export default function AuthLayout({
                 La piattaforma che trasforma il tuo coaching
               </p>
             </div>
-            
+
             <div className="space-y-6">
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
@@ -37,7 +36,7 @@ export default function AuthLayout({
                   <p className="text-gray-400">Organizza e monitora il progresso di ogni cliente</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -49,7 +48,7 @@ export default function AuthLayout({
                   <p className="text-gray-400">Pianifica e gestisci le tue sessioni di coaching</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0 w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -63,7 +62,7 @@ export default function AuthLayout({
               </div>
             </div>
           </div>
-          
+
           {/* Background pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full -translate-y-32 translate-x-32"></div>
@@ -78,9 +77,9 @@ export default function AuthLayout({
               <h1 className="text-3xl font-bold text-gray-900">QCoach</h1>
               <p className="text-gray-600 mt-2">Benvenuto nella tua piattaforma di coaching</p>
             </div>
-            
+
             {children}
-            
+
             {/* Footer links */}
             <div className="mt-8 text-center">
               <p className="text-sm text-gray-600">

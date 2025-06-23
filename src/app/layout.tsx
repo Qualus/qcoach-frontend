@@ -6,8 +6,8 @@ import { QueryProvider } from '@/providers/query-provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'QCoach - Online Coaching Platform',
-  description: 'Professional coaching platform for coaches and clients',
+  title: 'QCoach - La tua piattaforma per il coaching online',
+  description: 'Piattaforma professionale per la gestione dei clienti in coaching remoto',
 }
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="it">
       <body className={inter.className}>
         <QueryProvider>
           {children}

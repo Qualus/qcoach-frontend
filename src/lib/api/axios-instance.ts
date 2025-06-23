@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { getAuthTokens, setAuthTokens, clearAuthTokens, isTokenValid } from '../auth/tokens';
+import { getAuthTokens, clearAuthTokens, isTokenValid } from '../auth/tokens';
+import { authService } from '../auth/auth-service';
 
 const AXIOS_INSTANCE = axios.create();
 
@@ -60,14 +61,9 @@ AXIOS_INSTANCE.interceptors.response.use(
       
       if (isTokenValid(tokens) && tokens?.refreshToken) {
         try {
-          const { refreshToken } = await import('./generated');
-          const refreshResponse = await refreshToken({
-            jwtToken: tokens.jwtToken,
-            refreshToken: tokens.refreshToken
-          });
+          const refreshResponse = await authService.refreshUserToken();
           
-          if (refreshResponse.jwtToken) {
-            setAuthTokens(refreshResponse);
+          if (refreshResponse?.jwtToken) {
             originalRequest.headers.Authorization = `Bearer ${refreshResponse.jwtToken}`;
             return AXIOS_INSTANCE(originalRequest);
           }

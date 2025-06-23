@@ -29,8 +29,6 @@ export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) 
 
     if (!password) {
       newErrors.password = "Password richiesta"
-    } else if (password.length < 6) {
-      newErrors.password = "Password deve essere di almeno 6 caratteri"
     }
 
     setErrors(newErrors)
@@ -49,7 +47,7 @@ export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) 
       <div className="bg-white rounded-lg shadow-sm border border-primary-200 p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold text-primary-900">Accedi</h1>
-          <p className="text-primary-600 mt-2">Benvenuto in CoachPro</p>
+          <p className="text-primary-600 mt-2">Benvenuto su QCoach</p>
         </div>
 
         {error && (
@@ -111,13 +109,6 @@ export const LoginForm = ({ onSubmit, loading = false, error }: LoginFormProps) 
           </div>
 
           <div className="flex items-center justify-between">
-            <label className="flex items-center">
-              <input
-                type="checkbox"
-                className="w-4 h-4 text-accent-600 border-primary-300 rounded focus:ring-accent-500"
-              />
-              <span className="ml-2 text-sm text-primary-600">Ricordami</span>
-            </label>
             <button type="button" className="text-sm text-accent-600 hover:text-accent-700 font-medium">
               Password dimenticata?
             </button>

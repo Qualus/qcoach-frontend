@@ -25,8 +25,8 @@ export function useAuth() {
     user,
     tokens,
     isAuthenticated: !!(tokens?.jwtToken || user),
-    isCoach: user?.role === 'COACH', // Usa i ruoli del tuo backend
-    isClient: user?.role === 'CLIENT',
+    isCoach: user?.role === 'COACH',
+    isCustomer: user?.role === 'CUSTOMER',
     logout,
   }
 }
